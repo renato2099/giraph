@@ -70,11 +70,11 @@ public class GoraGEdgeEdgeInputFormat
       Edge<LongWritable, FloatWritable> edge = null;
       GEdge goraEdge = (GEdge) goraObject;
       Long dest;
-      Long value;
+      Float value;
       dest = Long.valueOf(goraEdge.getVertexOutId().toString());
       this.sourceId = new LongWritable();
       this.sourceId.set(Long.valueOf(goraEdge.getVertexInId().toString()));
-      value = (long) goraEdge.getEdgeWeight();
+      value = (float) goraEdge.getEdgeWeight();
       edge = EdgeFactory.create(new LongWritable(dest),
           new FloatWritable(value));
       return edge;

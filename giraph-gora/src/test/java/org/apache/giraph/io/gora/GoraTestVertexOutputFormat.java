@@ -93,8 +93,8 @@ public class GoraTestVertexOutputFormat
      * @param edges Set of edges.
      * @return GVertex created.
      */
-    public GVertex createVertex(String id, Map<String, String> edges) {
-      GVertex newVrtx = new GVertex();
+    public GVertexResult createVertex(String id, Map<String, String> edges) {
+      GVertexResult newVrtx = new GVertexResult();
       newVrtx.setVertexId(id);
       if (edges != null) {
         for (String edgeId : edges.keySet())

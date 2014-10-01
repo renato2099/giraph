@@ -104,9 +104,9 @@ public class GoraTestEdgeOutputFormat
      * @param edgeWeight Edge wight.
      * @return GEdge created.
      */
-    private GEdge createEdge(String id, String vertexInId,
+    private GEdgeResult createEdge(String id, String vertexInId,
         String vertexOutId, String edgeLabel, float edgeWeight) {
-      GEdge newEdge = new GEdge();
+      GEdgeResult newEdge = new GEdgeResult();
       newEdge.setEdgeId(id);
       newEdge.setVertexInId(vertexInId);
       newEdge.setVertexOutId(vertexOutId);

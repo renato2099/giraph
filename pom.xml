@@ -276,7 +276,7 @@ under the License.
     <dep.avro.version>1.7.6</dep.avro.version>
     <dep.accumulo.version>1.4.0</dep.accumulo.version>
     <dep.asm.version>3.2</dep.asm.version>
-    <dep.gora.version>0.5</dep.gora.version>
+    <dep.gora.version>0.6-SNAPSHOT</dep.gora.version>
     <dep.airline.version>0.5</dep.airline.version>
     <dep.base64.version>2.3.8</dep.base64.version>
     <dep.cli-parser.version>1.1</dep.cli-parser.version>

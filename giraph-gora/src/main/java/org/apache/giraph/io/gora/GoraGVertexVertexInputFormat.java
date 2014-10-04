@@ -74,8 +74,9 @@ public class GoraGVertexVertexInputFormat
       GVertex tmpGVertex = (GVertex) goraObject;
 
       LongWritable vrtxId = new LongWritable(
-          Long.parseLong(tmpGVertex.getVertexId().toString()));
-      DoubleWritable vrtxValue = new DoubleWritable(tmpGVertex.getVertexValue());
+        Long.parseLong(tmpGVertex.getVertexId().toString()));
+      DoubleWritable vrtxValue = new DoubleWritable(
+        tmpGVertex.getVertexValue());
       vertex.initialize(vrtxId, vrtxValue);
       if (tmpGVertex.getEdges() != null && !tmpGVertex.getEdges().isEmpty()) {
         Set<CharSequence> keyIt = tmpGVertex.getEdges().keySet();

@@ -67,11 +67,8 @@ public class GVertexResult extends
 
     /**
      * Field's constructor
-     * 
-     * @param index
-     *          field's index.
-     * @param name
-     *          field's name.
+     * @param index field's index.
+     * @param name field's name.
      */
     Field(int index, String name) {
       this.index = index;
@@ -80,7 +77,6 @@ public class GVertexResult extends
 
     /**
      * Gets field's index.
-     * 
      * @return int field's index.
      */
     public int getIndex() {
@@ -89,7 +85,6 @@ public class GVertexResult extends
 
     /**
      * Gets field's name.
-     * 
      * @return String field's name.
      */
     public String getName() {
@@ -98,7 +93,6 @@ public class GVertexResult extends
 
     /**
      * Gets field's attributes to string.
-     * 
      * @return String field's attributes to string.
      */
     public String toString() {
@@ -109,29 +103,48 @@ public class GVertexResult extends
   /**
    * Array containing all fields/
    */
-  public static final String[] ALL_FIELDS = { "vertexId", "vertexValue",
-      "edges", };
+  private static final String[] ALL_FIELDS = {
+    "vertexId", "vertexValue", "edges", };
+
+  /**
+   * Tombstone.
+   */
+  private static final Tombstone TOMBSTONE = new Tombstone();
+
+  /**
+   * vertexId.
+   */
+  private java.lang.CharSequence vertexId;
+
+  /**
+   * vertexValue.
+   */
+  private float vertexValue;
+
+  /**
+   * edges.
+   */
+  private java.util.Map<java.lang.CharSequence, java.lang.CharSequence> edges;
 
   /**
    * Gets the total field count.
-   * 
    * @return int field count
    */
   public int getFieldsCount() {
     return GVertexResult.ALL_FIELDS.length;
   }
 
-  private java.lang.CharSequence vertexId;
-  private float vertexValue;
-  private java.util.Map<java.lang.CharSequence, java.lang.CharSequence> edges;
-
+  /**
+   * Gets the schema
+   * @return Schema
+   */
   public org.apache.avro.Schema getSchema() {
     return SCHEMAS;
   }
 
   /**
    * Gets field
-   * @param fieldIndex index field.
+   * @param field index field.
    * @return Object from an index.
    */
   public java.lang.Object get(int field) {
@@ -149,22 +162,23 @@ public class GVertexResult extends
 
   /**
    * Puts a value into a field.
-   * @param fieldIndex index of field used.
-   * @param fieldValue value of field used.
+   * @param field index of field used.
+   * @param value value of field used.
    */
   @SuppressWarnings(value = "unchecked")
   public void put(int field, java.lang.Object value) {
     switch (field) {
     case 0:
-      vertexId = (java.lang.CharSequence) (value);
+      vertexId = (java.lang.CharSequence) value;
       break;
     case 1:
-      vertexValue = (java.lang.Float) (value);
+      vertexValue = (java.lang.Float) value;
       break;
     case 2:
-      edges = (java.util.Map<java.lang.CharSequence, java.lang.CharSequence>) ((value instanceof org.apache.gora.persistency.Dirtyable) ? value
-          : new org.apache.gora.persistency.impl.DirtyMapWrapper(
-              (java.util.Map) value));
+      edges = (java.util.Map<java.lang.CharSequence, java.lang.CharSequence>)
+        ((value instanceof org.apache.gora.persistency.Dirtyable) ? value :
+        new org.apache.gora.persistency.impl.DirtyMapWrapper((java.util.Map)
+            value));
       break;
     default:
       throw new org.apache.avro.AvroRuntimeException("Bad index");
@@ -173,6 +187,7 @@ public class GVertexResult extends
 
   /**
    * Gets the value of the 'vertexId' field.
+   * @return CharSequence
    */
   public java.lang.CharSequence getVertexId() {
     return vertexId;
@@ -180,7 +195,7 @@ public class GVertexResult extends
 
   /**
    * Sets the value of the 'vertexId' field.
-     * @param value the value to set.
+   * @param value the value to set.
    */
   public void setVertexId(java.lang.CharSequence value) {
     this.vertexId = value;
@@ -190,7 +205,8 @@ public class GVertexResult extends
   /**
    * Checks the dirty status of the 'vertexId' field. A field is dirty if it
    * represents a change that has not yet been written to the database.
-     * @param value the value to set.
+   * @param value the value to set.
+   * @return boolean
    */
   public boolean isVertexIdDirty(java.lang.CharSequence value) {
     return isDirty(0);
@@ -198,6 +214,7 @@ public class GVertexResult extends
 
   /**
    * Gets the value of the 'vertexValue' field.
+   * @return Float
    */
   public java.lang.Float getVertexValue() {
     return vertexValue;
@@ -215,7 +232,8 @@ public class GVertexResult extends
   /**
    * Checks the dirty status of the 'vertexValue' field. A field is dirty if it
    * represents a change that has not yet been written to the database.
-     * @param value the value to set.
+   * @param value the value to set.
+   * @return boolean
    */
   public boolean isVertexValueDirty(java.lang.Float value) {
     return isDirty(1);
@@ -223,8 +241,10 @@ public class GVertexResult extends
 
   /**
    * Gets the value of the 'edges' field.
+   * @return Edges
    */
-  public java.util.Map<java.lang.CharSequence, java.lang.CharSequence> getEdges() {
+  public java.util.Map<java.lang.CharSequence, java.lang.CharSequence>
+  getEdges() {
     return edges;
   }
 
@@ -234,8 +254,8 @@ public class GVertexResult extends
    */
   public void setEdges(
       java.util.Map<java.lang.CharSequence, java.lang.CharSequence> value) {
-    this.edges = (value instanceof org.apache.gora.persistency.Dirtyable) ? value
-        : new org.apache.gora.persistency.impl.DirtyMapWrapper(value);
+    this.edges = (value instanceof org.apache.gora.persistency.Dirtyable) ?
+        value : new org.apache.gora.persistency.impl.DirtyMapWrapper(value);
     setDirty(2);
   }
 
@@ -243,32 +263,48 @@ public class GVertexResult extends
    * Checks the dirty status of the 'edges' field. A field is dirty if it
    * represents a change that has not yet been written to the database.
    * @param value the value to set.
+   * @return boolean
    */
   public boolean isEdgesDirty(
       java.util.Map<java.lang.CharSequence, java.lang.CharSequence> value) {
     return isDirty(2);
   }
 
-  /** Creates a new GVertexResult RecordBuilder */
-  public static org.apache.giraph.io.gora.generated.GVertexResult.Builder newBuilder() {
+  /**
+   * Creates a new GVertexResult RecordBuilder
+   * @return GVertexResult.Builder
+   */
+  public static org.apache.giraph.io.gora.generated.GVertexResult.Builder
+  newBuilder() {
     return new org.apache.giraph.io.gora.generated.GVertexResult.Builder();
   }
 
-  /** Creates a new GVertexResult RecordBuilder by copying an existing Builder */
-  public static org.apache.giraph.io.gora.generated.GVertexResult.Builder newBuilder(
-      org.apache.giraph.io.gora.generated.GVertexResult.Builder other) {
+  /**
+   * Creates a new GVertexResult RecordBuilder by copying an existing Builder.
+   * @param other GVertexResult.Builder
+   * @return GVertexResult.Builder
+   */
+  public static org.apache.giraph.io.gora.generated.GVertexResult.Builder
+  newBuilder(org.apache.giraph.io.gora.generated.GVertexResult.Builder other) {
     return new org.apache.giraph.io.gora.generated.GVertexResult.Builder(other);
   }
 
   /**
    * Creates a new GVertexResult RecordBuilder by copying an existing
    * GVertexResult instance
+   * @param other GVertexResult
+   * @return GVertexResult.Builder
    */
-  public static org.apache.giraph.io.gora.generated.GVertexResult.Builder newBuilder(
-      org.apache.giraph.io.gora.generated.GVertexResult other) {
+  public static org.apache.giraph.io.gora.generated.GVertexResult.Builder
+  newBuilder(org.apache.giraph.io.gora.generated.GVertexResult other) {
     return new org.apache.giraph.io.gora.generated.GVertexResult.Builder(other);
   }
 
+  /**
+   * Makes a deep copy from a bytebuffer.
+   * @param input ByteBuffer
+   * @return ByteBuffer
+   */
   private static java.nio.ByteBuffer deepCopyToReadOnlyBuffer(
       java.nio.ByteBuffer input) {
     java.nio.ByteBuffer copy = java.nio.ByteBuffer.allocate(input.capacity());
@@ -299,8 +335,19 @@ public class GVertexResult extends
       org.apache.avro.specific.SpecificRecordBuilderBase<GVertexResult>
       implements org.apache.avro.data.RecordBuilder<GVertexResult> {
 
+    /**
+     * vertexId
+     */
     private java.lang.CharSequence vertexId;
+
+    /**
+     * vertexValue
+     */
     private float vertexValue;
+
+    /**
+     * edges
+     */
     private java.util.Map<java.lang.CharSequence, java.lang.CharSequence> edges;
 
     /** Creates a new Builder */
@@ -308,13 +355,20 @@ public class GVertexResult extends
       super(org.apache.giraph.io.gora.generated.GVertexResult.SCHEMAS);
     }
 
-    /** Creates a Builder by copying an existing Builder */
+    /**
+     * Creates a Builder by copying an existing Builder.
+     * @param other GVertexResult.Builder
+     */
     private Builder(
         org.apache.giraph.io.gora.generated.GVertexResult.Builder other) {
       super(other);
     }
 
-    /** Creates a Builder by copying an existing GVertexResult instance */
+    /**
+     * Creates a Builder by copying an existing GVertexResult instance.
+     * @param other GVertexResult
+     */
+    // CHECKSTYLE: stop Indentation
     private Builder(org.apache.giraph.io.gora.generated.GVertexResult other) {
       super(org.apache.giraph.io.gora.generated.GVertexResult.SCHEMAS);
       if (isValidValue(fields()[0], other.vertexId)) {
@@ -328,125 +382,202 @@ public class GVertexResult extends
         fieldSetFlags()[1] = true;
       }
       if (isValidValue(fields()[2], other.edges)) {
-        this.edges = (java.util.Map<java.lang.CharSequence, java.lang.CharSequence>) data()
-            .deepCopy(fields()[2].schema(), other.edges);
+        this.edges =
+            (java.util.Map<java.lang.CharSequence, java.lang.CharSequence>)
+            data().deepCopy(fields()[2].schema(), other.edges);
         fieldSetFlags()[2] = true;
       }
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Gets the value of the 'vertexId' field */
+    /**
+     * Gets the value of the 'vertexId' field.
+     * @return CharSequence
+     */
     public java.lang.CharSequence getVertexId() {
       return vertexId;
     }
 
-    /** Sets the value of the 'vertexId' field */
-    public org.apache.giraph.io.gora.generated.GVertexResult.Builder setVertexId(
-        java.lang.CharSequence value) {
+    /**
+     * Sets the value of the 'vertexId' field.
+     * @param value CharSequence
+     * @return GVertexResult.Builder
+     */
+    // CHECKSTYLE: stop Indentation
+    public org.apache.giraph.io.gora.generated.GVertexResult.Builder
+    setVertexId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.vertexId = value;
       fieldSetFlags()[0] = true;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Checks whether the 'vertexId' field has been set */
+    /**
+     * Checks whether the 'vertexId' field has been set.
+     * @return boolean
+     */
     public boolean hasVertexId() {
       return fieldSetFlags()[0];
     }
 
-    /** Clears the value of the 'vertexId' field */
-    public org.apache.giraph.io.gora.generated.GVertexResult.Builder clearVertexId() {
+    /**
+     * Clears the value of the 'vertexId' field
+     * @return GVertexResult.Builder
+     */
+    // CHECKSTYLE: stop Indentation
+    public org.apache.giraph.io.gora.generated.GVertexResult.Builder
+    clearVertexId() {
       vertexId = null;
       fieldSetFlags()[0] = false;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Gets the value of the 'vertexValue' field */
+    /**
+     * Gets the value of the 'vertexValue' field.
+     * @return Float
+     */
     public java.lang.Float getVertexValue() {
       return vertexValue;
     }
 
-    /** Sets the value of the 'vertexValue' field */
-    public org.apache.giraph.io.gora.generated.GVertexResult.Builder setVertexValue(
-        float value) {
+    /**
+     * Sets the value of the 'vertexValue' field.
+     * @param value float
+     * @return GVertexResult.Builder
+     */
+    // CHECKSTYLE: stop Indentation
+    public org.apache.giraph.io.gora.generated.GVertexResult.Builder
+    setVertexValue(float value) {
       validate(fields()[1], value);
       this.vertexValue = value;
       fieldSetFlags()[1] = true;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Checks whether the 'vertexValue' field has been set */
+    /**
+     * Checks whether the 'vertexValue' field has been set.
+     * @return boolean
+     */
     public boolean hasVertexValue() {
       return fieldSetFlags()[1];
     }
 
-    /** Clears the value of the 'vertexValue' field */
-    public org.apache.giraph.io.gora.generated.GVertexResult.Builder clearVertexValue() {
+    /**
+     * Clears the value of the 'vertexValue' field.
+     * @return GVertexResult.Builder
+     */
+    // CHECKSTYLE: stop Indentation
+    public org.apache.giraph.io.gora.generated.GVertexResult.Builder
+    clearVertexValue() {
       fieldSetFlags()[1] = false;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Gets the value of the 'edges' field */
-    public java.util.Map<java.lang.CharSequence, java.lang.CharSequence> getEdges() {
+    /**
+     * Gets the value of the 'edges' field.
+     * @return java.util.Map
+     */
+    public java.util.Map<java.lang.CharSequence, java.lang.CharSequence>
+    getEdges() {
       return edges;
     }
 
-    /** Sets the value of the 'edges' field */
+    /**
+     * Sets the value of the 'edges' field
+     * @param value java.util.Map
+     * @return GVertexResult.Builder
+     */
+    // CHECKSTYLE: stop Indentation
     public org.apache.giraph.io.gora.generated.GVertexResult.Builder setEdges(
-        java.util.Map<java.lang.CharSequence, java.lang.CharSequence> value) {
+    java.util.Map<java.lang.CharSequence, java.lang.CharSequence> value) {
       validate(fields()[2], value);
       this.edges = value;
       fieldSetFlags()[2] = true;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Checks whether the 'edges' field has been set */
+    /**
+     * Checks whether the 'edges' field has been set.
+     * @return boolean
+     */
     public boolean hasEdges() {
       return fieldSetFlags()[2];
     }
 
-    /** Clears the value of the 'edges' field */
-    public org.apache.giraph.io.gora.generated.GVertexResult.Builder clearEdges() {
+    /**
+     * Clears the value of the 'edges' field.
+     * @return org.apache.giraph.io.gora.generated.GVertexResult.Builder
+     */
+    // CHECKSTYLE: stop Indentation
+    public org.apache.giraph.io.gora.generated.GVertexResult.Builder
+    clearEdges() {
       edges = null;
       fieldSetFlags()[2] = false;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
     @Override
+    /**
+     * Builds a GVertexResult.
+     * @return GVertexResult
+     */
+    // CHECKSTYLE: stop IllegalCatch
     public GVertexResult build() {
       try {
         GVertexResult record = new GVertexResult();
-        record.vertexId = fieldSetFlags()[0] ? this.vertexId
-            : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.vertexValue = fieldSetFlags()[1] ? this.vertexValue
-            : (java.lang.Float) defaultValue(fields()[1]);
-        record.edges = fieldSetFlags()[2] ? this.edges
-            : (java.util.Map<java.lang.CharSequence, java.lang.CharSequence>) new org.apache.gora.persistency.impl.DirtyMapWrapper(
-                (java.util.Map) defaultValue(fields()[2]));
+        record.vertexId = fieldSetFlags()[0] ? this.vertexId :
+          (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.vertexValue = fieldSetFlags()[1] ? this.vertexValue :
+          (java.lang.Float) defaultValue(fields()[1]);
+        record.edges = fieldSetFlags()[2] ? this.edges :
+          (java.util.Map<java.lang.CharSequence, java.lang.CharSequence>)
+          new org.apache.gora.persistency.impl.DirtyMapWrapper(
+            (java.util.Map) defaultValue(fields()[2]));
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
+    // CHECKSTYLE: resume IllegalCatch
   }
 
+  /**
+   * Gets tombstone
+   * @return GVertex.Tombstone
+   */
   public GVertexResult.Tombstone getTombstone() {
     return TOMBSTONE;
   }
 
+  /**
+   * Gets a new instance
+   * @return GVertexResult.
+   */
   public GVertexResult newInstance() {
     return newBuilder().build();
   }
 
-  private static final Tombstone TOMBSTONE = new Tombstone();
-
+  /**
+   * Tombstone class.
+   */
   public static final class Tombstone extends GVertexResult implements
       org.apache.gora.persistency.Tombstone {
 
+    /**
+     * Default constructor.
+     */
     private Tombstone() {
     }
 
     /**
      * Gets the value of the 'vertexId' field.
+     * @return java.lang.CharSequence
      */
     public java.lang.CharSequence getVertexId() {
       throw new java.lang.UnsupportedOperationException(
@@ -466,6 +597,7 @@ public class GVertexResult extends
      * Checks the dirty status of the 'vertexId' field. A field is dirty if it
      * represents a change that has not yet been written to the database.
      * @param value the value to set.
+     * @return boolean
      */
     public boolean isVertexIdDirty(java.lang.CharSequence value) {
       throw new java.lang.UnsupportedOperationException(
@@ -474,6 +606,7 @@ public class GVertexResult extends
 
     /**
      * Gets the value of the 'vertexValue' field.
+     * @return Float
      */
     public java.lang.Float getVertexValue() {
       throw new java.lang.UnsupportedOperationException(
@@ -493,6 +626,7 @@ public class GVertexResult extends
      * Checks the dirty status of the 'vertexValue' field. A field is dirty if
      * it represents a change that has not yet been written to the database.
      * @param value the value to set.
+     * @return boolean
      */
     public boolean isVertexValueDirty(java.lang.Float value) {
       throw new java.lang.UnsupportedOperationException(
@@ -501,8 +635,10 @@ public class GVertexResult extends
 
     /**
      * Gets the value of the 'edges' field.
+     * @return java.util.Map
      */
-    public java.util.Map<java.lang.CharSequence, java.lang.CharSequence> getEdges() {
+    public java.util.Map<java.lang.CharSequence, java.lang.CharSequence>
+    getEdges() {
       throw new java.lang.UnsupportedOperationException(
           "Get is not supported on tombstones");
     }
@@ -521,6 +657,7 @@ public class GVertexResult extends
      * Checks the dirty status of the 'edges' field. A field is dirty if it
      * represents a change that has not yet been written to the database.
      * @param value the value to set.
+     * @return boolean
      */
     public boolean isEdgesDirty(
         java.util.Map<java.lang.CharSequence, java.lang.CharSequence> value) {

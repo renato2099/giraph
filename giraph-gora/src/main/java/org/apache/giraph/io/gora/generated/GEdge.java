@@ -30,8 +30,8 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
    */
   public static final org.apache.avro.Schema SCHEMAS =
       new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\"," +
-          "\"name\":\"GEdge\"," + 
-          "\"namespace\":\"org.apache.giraph.gora.generated\"," + 
+          "\"name\":\"GEdge\"," +
+          "\"namespace\":\"org.apache.giraph.gora.generated\"," +
           "\"fields\":[{\"name\":\"edgeId\",\"type\":\"string\"}," +
           "{\"name\":\"edgeWeight\",\"type\":\"float\"}," +
           "{\"name\":\"vertexInId\",\"type\":\"string\"}," +
@@ -113,8 +113,38 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
   /**
    * Array containing all fields/
    */
-  public static final String[] ALL_FIELDS = { "edgeId", "edgeWeight",
-      "vertexInId", "vertexOutId", "label", };
+  private static final String[] ALL_FIELDS = {
+    "edgeId", "edgeWeight", "vertexInId", "vertexOutId", "label"};
+
+  /**
+   * Tombstone.
+   */
+  private static final Tombstone TOMBSTONE = new Tombstone();
+
+  /**
+   * edgeId.
+   */
+  private java.lang.CharSequence edgeId;
+
+  /**
+   * edgeWeight.
+   */
+  private float edgeWeight;
+
+  /**
+   * vertexInId.
+   */
+  private java.lang.CharSequence vertexInId;
+
+  /**
+   * vertexOutId.
+   */
+  private java.lang.CharSequence vertexOutId;
+
+  /**
+   * label.
+   */
+  private java.lang.CharSequence label;
 
   /**
    * Gets the total field count.
@@ -124,19 +154,17 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
     return GEdge.ALL_FIELDS.length;
   }
 
-  private java.lang.CharSequence edgeId;
-  private float edgeWeight;
-  private java.lang.CharSequence vertexInId;
-  private java.lang.CharSequence vertexOutId;
-  private java.lang.CharSequence label;
-
+  /**
+   * Gets the schema
+   * @return Schema
+   */
   public org.apache.avro.Schema getSchema() {
     return SCHEMAS;
   }
 
   /**
    * Gets field
-   * @param fieldIndex index field.
+   * @param field index field.
    * @return Object from an index.
    */
   public java.lang.Object get(int field) {
@@ -158,26 +186,26 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
   /**
    * Puts a value into a field.
-   * @param fieldIndex index of field used.
-   * @param fieldValue value of field used.
+   * @param field index of field used.
+   * @param value value of field used.
    */
   @SuppressWarnings(value = "unchecked")
   public void put(int field, java.lang.Object value) {
     switch (field) {
     case 0:
-      edgeId = (java.lang.CharSequence) (value);
+      edgeId = (java.lang.CharSequence) value;
       break;
     case 1:
-      edgeWeight = (java.lang.Float) (value);
+      edgeWeight = (java.lang.Float) value;
       break;
     case 2:
-      vertexInId = (java.lang.CharSequence) (value);
+      vertexInId = (java.lang.CharSequence) value;
       break;
     case 3:
-      vertexOutId = (java.lang.CharSequence) (value);
+      vertexOutId = (java.lang.CharSequence) value;
       break;
     case 4:
-      label = (java.lang.CharSequence) (value);
+      label = (java.lang.CharSequence) value;
       break;
     default:
       throw new org.apache.avro.AvroRuntimeException("Bad index");
@@ -186,6 +214,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
   /**
    * Gets the value of the 'edgeId' field.
+   * @return CharSequence.
    */
   public java.lang.CharSequence getEdgeId() {
     return edgeId;
@@ -203,8 +232,8 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
   /**
    * Checks the dirty status of the 'edgeId' field. A field is dirty if it
    * represents a change that has not yet been written to the database.
-   * @param value
-   *          the value to set.
+   * @param value the value to set.
+   * @return boolean
    */
   public boolean isEdgeIdDirty(java.lang.CharSequence value) {
     return isDirty(0);
@@ -212,6 +241,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
   /**
    * Gets the value of the 'edgeWeight' field.
+   * @return Float
    */
   public java.lang.Float getEdgeWeight() {
     return edgeWeight;
@@ -230,6 +260,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
    * Checks the dirty status of the 'edgeWeight' field. A field is dirty if it
    * represents a change that has not yet been written to the database.
    * @param value the value to set.
+   * @return boolean
    */
   public boolean isEdgeWeightDirty(java.lang.Float value) {
     return isDirty(1);
@@ -237,6 +268,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
   /**
    * Gets the value of the 'vertexInId' field.
+   * @return CharSequence
    */
   public java.lang.CharSequence getVertexInId() {
     return vertexInId;
@@ -255,6 +287,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
    * Checks the dirty status of the 'vertexInId' field. A field is dirty if it
    * represents a change that has not yet been written to the database.
    * @param value the value to set.
+   * @return boolean
    */
   public boolean isVertexInIdDirty(java.lang.CharSequence value) {
     return isDirty(2);
@@ -262,6 +295,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
   /**
    * Gets the value of the 'vertexOutId' field.
+   * @return CharSequence
    */
   public java.lang.CharSequence getVertexOutId() {
     return vertexOutId;
@@ -280,6 +314,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
    * Checks the dirty status of the 'vertexOutId' field. A field is dirty if it
    * represents a change that has not yet been written to the database.
    * @param value the value to set.
+   * @return boolean
    */
   public boolean isVertexOutIdDirty(java.lang.CharSequence value) {
     return isDirty(3);
@@ -287,6 +322,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
   /**
    * Gets the value of the 'label' field.
+   * @return CharSequence
    */
   public java.lang.CharSequence getLabel() {
     return label;
@@ -305,28 +341,45 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
    * Checks the dirty status of the 'label' field. A field is dirty if it
    * represents a change that has not yet been written to the database.
    * @param value the value to set.
+   * @return boolean
    */
   public boolean isLabelDirty(java.lang.CharSequence value) {
     return isDirty(4);
   }
 
-  /** Creates a new GEdge RecordBuilder */
+  /**
+   * Creates a new GEdge RecordBuilder.
+   * @return GEdge.Builder
+   */
   public static org.apache.giraph.io.gora.generated.GEdge.Builder newBuilder() {
     return new org.apache.giraph.io.gora.generated.GEdge.Builder();
   }
 
-  /** Creates a new GEdge RecordBuilder by copying an existing Builder */
+  /**
+   * Creates a new GEdge RecordBuilder by copying an existing Builder
+   * @param other GEdge.Builder
+   * @return org.apache.giraph.io.gora.generated.GEdge.Builder
+   */
   public static org.apache.giraph.io.gora.generated.GEdge.Builder newBuilder(
       org.apache.giraph.io.gora.generated.GEdge.Builder other) {
     return new org.apache.giraph.io.gora.generated.GEdge.Builder(other);
   }
 
-  /** Creates a new GEdge RecordBuilder by copying an existing GEdge instance */
+  /**
+   * Creates a new GEdge RecordBuilder by copying an existing GEdge instance.
+   * @param other GEdge
+   * @return org.apache.giraph.io.gora.generated.GEdge.Builder
+   */
   public static org.apache.giraph.io.gora.generated.GEdge.Builder newBuilder(
       org.apache.giraph.io.gora.generated.GEdge other) {
     return new org.apache.giraph.io.gora.generated.GEdge.Builder(other);
   }
 
+  /**
+   * Makes a deep copy from a bytebuffer.
+   * @param input ByteBuffer
+   * @return ByteBuffer
+   */
   private static java.nio.ByteBuffer deepCopyToReadOnlyBuffer(
       java.nio.ByteBuffer input) {
     java.nio.ByteBuffer copy = java.nio.ByteBuffer.allocate(input.capacity());
@@ -357,161 +410,268 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
       org.apache.avro.specific.SpecificRecordBuilderBase<GEdge> implements
       org.apache.avro.data.RecordBuilder<GEdge> {
 
+    /**
+     * edgeId.
+     */
     private java.lang.CharSequence edgeId;
+
+    /**
+     * edgeWeight.
+     */
     private float edgeWeight;
+
+    /**
+     * vertexInId
+     */
     private java.lang.CharSequence vertexInId;
+
+    /**
+     * vertexOutId.
+     */
     private java.lang.CharSequence vertexOutId;
+
+    /**
+     * label.
+     */
     private java.lang.CharSequence label;
 
-    /** Creates a new Builder */
+    /**
+     * Creates a new Builder
+     */
     private Builder() {
       super(org.apache.giraph.io.gora.generated.GEdge.SCHEMAS);
     }
 
-    /** Creates a Builder by copying an existing Builder */
+    /**
+     * Creates a Builder by copying an existing Builder.
+     * @param other GEdge.Builder
+     */
     private Builder(org.apache.giraph.io.gora.generated.GEdge.Builder other) {
       super(other);
     }
 
-    /** Creates a Builder by copying an existing GEdge instance */
+    /**
+     * Creates a Builder by copying an existing GEdge instance.
+     * @param other GEdge
+     */
+    // CHECKSTYLE: stop Indentation
     private Builder(org.apache.giraph.io.gora.generated.GEdge other) {
       super(org.apache.giraph.io.gora.generated.GEdge.SCHEMAS);
       if (isValidValue(fields()[0], other.edgeId)) {
         this.edgeId = (java.lang.CharSequence) data().deepCopy(
-            fields()[0].schema(), other.edgeId);
+          fields()[0].schema(), other.edgeId);
         fieldSetFlags()[0] = true;
       }
       if (isValidValue(fields()[1], other.edgeWeight)) {
         this.edgeWeight = (java.lang.Float) data().deepCopy(
-            fields()[1].schema(), other.edgeWeight);
+          fields()[1].schema(), other.edgeWeight);
         fieldSetFlags()[1] = true;
       }
       if (isValidValue(fields()[2], other.vertexInId)) {
         this.vertexInId = (java.lang.CharSequence) data().deepCopy(
-            fields()[2].schema(), other.vertexInId);
+          fields()[2].schema(), other.vertexInId);
         fieldSetFlags()[2] = true;
       }
       if (isValidValue(fields()[3], other.vertexOutId)) {
         this.vertexOutId = (java.lang.CharSequence) data().deepCopy(
-            fields()[3].schema(), other.vertexOutId);
+          fields()[3].schema(), other.vertexOutId);
         fieldSetFlags()[3] = true;
       }
       if (isValidValue(fields()[4], other.label)) {
         this.label = (java.lang.CharSequence) data().deepCopy(
-            fields()[4].schema(), other.label);
+          fields()[4].schema(), other.label);
         fieldSetFlags()[4] = true;
       }
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Gets the value of the 'edgeId' field */
+    /**
+     * Gets the value of the 'edgeId' field
+     * @return CharSequence
+     */
     public java.lang.CharSequence getEdgeId() {
       return edgeId;
     }
 
-    /** Sets the value of the 'edgeId' field */
+    /**
+     * Sets the value of the 'edgeId' field
+     * @param value CharSequence
+     * @return GEdge.Builder
+     */
+    // CHECKSTYLE: stop Indentation
     public org.apache.giraph.io.gora.generated.GEdge.Builder setEdgeId(
-        java.lang.CharSequence value) {
+      java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.edgeId = value;
       fieldSetFlags()[0] = true;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Checks whether the 'edgeId' field has been set */
+    /**
+     * Checks whether the 'edgeId' field has been set.
+     * @return boolean.
+     */
     public boolean hasEdgeId() {
       return fieldSetFlags()[0];
     }
 
-    /** Clears the value of the 'edgeId' field */
+    /**
+     * Clears the value of the 'edgeId' field.
+     * @return GEdge.Builder
+     */
+    // CHECKSTYLE: stop Indentation
     public org.apache.giraph.io.gora.generated.GEdge.Builder clearEdgeId() {
       edgeId = null;
       fieldSetFlags()[0] = false;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Gets the value of the 'edgeWeight' field */
+    /**
+     * Gets the value of the 'edgeWeight' field.
+     * @return Float
+     */
     public java.lang.Float getEdgeWeight() {
       return edgeWeight;
     }
 
-    /** Sets the value of the 'edgeWeight' field */
+    /**
+     * Sets the value of the 'edgeWeight' field
+     * @param value float
+     * @return GEdge.Builder
+     */
+    // CHECKSTYLE: stop Indentation
     public org.apache.giraph.io.gora.generated.GEdge.Builder setEdgeWeight(
-        float value) {
+      float value) {
       validate(fields()[1], value);
       this.edgeWeight = value;
       fieldSetFlags()[1] = true;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Checks whether the 'edgeWeight' field has been set */
+    /**
+     * Checks whether the 'edgeWeight' field has been set.
+     * @return boolean
+     */
     public boolean hasEdgeWeight() {
       return fieldSetFlags()[1];
     }
 
-    /** Clears the value of the 'edgeWeight' field */
+    /**
+     * Clears the value of the 'edgeWeight' field.
+     * @return GEdge.Builder
+     */
+    // CHECKSTYLE: stop Indentation
     public org.apache.giraph.io.gora.generated.GEdge.Builder clearEdgeWeight() {
       fieldSetFlags()[1] = false;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Gets the value of the 'vertexInId' field */
+    /**
+     * Gets the value of the 'vertexInId' field
+     * @return CharSequence
+     */
     public java.lang.CharSequence getVertexInId() {
       return vertexInId;
     }
 
-    /** Sets the value of the 'vertexInId' field */
+    /**
+     * Sets the value of the 'vertexInId' field.
+     * @param value CharSequence
+     * @return value
+     */
+    // CHECKSTYLE: stop Indentation
     public org.apache.giraph.io.gora.generated.GEdge.Builder setVertexInId(
-        java.lang.CharSequence value) {
+      java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.vertexInId = value;
       fieldSetFlags()[2] = true;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Checks whether the 'vertexInId' field has been set */
+    /**
+     * Checks whether the 'vertexInId' field has been set.
+     * @return boolean
+     */
     public boolean hasVertexInId() {
       return fieldSetFlags()[2];
     }
 
-    /** Clears the value of the 'vertexInId' field */
-    public org.apache.giraph.io.gora.generated.GEdge.Builder clearVertexInId() {
+    /**
+     * Clears the value of the 'vertexInId' field.
+     * @return GEdge.Builder
+     */
+    // CHECKSTYLE: stop Indentation
+    public org.apache.giraph.io.gora.generated.GEdge.Builder
+    clearVertexInId() {
       vertexInId = null;
       fieldSetFlags()[2] = false;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Gets the value of the 'vertexOutId' field */
+    /**
+     * Gets the value of the 'vertexOutId' field.
+     * @return java.lang.CharSequence
+     */
     public java.lang.CharSequence getVertexOutId() {
       return vertexOutId;
     }
 
-    /** Sets the value of the 'vertexOutId' field */
+    /**
+     * Sets the value of the 'vertexOutId' field.
+     * @param value CharSequence
+     * @return GEdge.Builder
+     */
+    // CHECKSTYLE: stop Indentation
     public org.apache.giraph.io.gora.generated.GEdge.Builder setVertexOutId(
         java.lang.CharSequence value) {
       validate(fields()[3], value);
       this.vertexOutId = value;
-      fieldSetFlags()[3] = true;
+        fieldSetFlags()[3] = true;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Checks whether the 'vertexOutId' field has been set */
+    /**
+     * Checks whether the 'vertexOutId' field has been set.
+     * @return boolean
+     */
     public boolean hasVertexOutId() {
       return fieldSetFlags()[3];
     }
 
-    /** Clears the value of the 'vertexOutId' field */
-    public org.apache.giraph.io.gora.generated.GEdge.Builder clearVertexOutId() {
+    /**
+     * Clears the value of the 'vertexOutId' field.
+     * @return GEdge.Builder
+     */
+    // CHECKSTYLE: stop Indentation
+    public org.apache.giraph.io.gora.generated.GEdge.Builder
+    clearVertexOutId() {
       vertexOutId = null;
       fieldSetFlags()[3] = false;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Gets the value of the 'label' field */
+    /**
+     * Gets the value of the 'label' field.
+     * @return CharSequence
+     */
     public java.lang.CharSequence getLabel() {
       return label;
     }
 
-    /** Sets the value of the 'label' field */
+    /**
+     * Sets the value of the 'label' field.
+     * @param value CharSequence
+     * @return GEdge.Builder
+     */
+    // CHECKSTYLE: stop Indentation
     public org.apache.giraph.io.gora.generated.GEdge.Builder setLabel(
         java.lang.CharSequence value) {
       validate(fields()[4], value);
@@ -519,58 +679,86 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
       fieldSetFlags()[4] = true;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
-    /** Checks whether the 'label' field has been set */
+    /**
+     * Checks whether the 'label' field has been set.
+     * @return boolean
+     */
     public boolean hasLabel() {
       return fieldSetFlags()[4];
     }
 
-    /** Clears the value of the 'label' field */
+    /**
+     * Clears the value of the 'label' field.
+     * @return GEdge.Builder
+     */
+    // CHECKSTYLE: stop Indentation
     public org.apache.giraph.io.gora.generated.GEdge.Builder clearLabel() {
       label = null;
       fieldSetFlags()[4] = false;
       return this;
     }
+    // CHECKSTYLE: resume Indentation
 
     @Override
+    /**
+     * Builds a GEdge.
+     * @return GEdge
+     */
+    // CHECKSTYLE: stop IllegalCatch
     public GEdge build() {
       try {
         GEdge record = new GEdge();
-        record.edgeId = fieldSetFlags()[0] ? this.edgeId
-            : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.edgeWeight = fieldSetFlags()[1] ? this.edgeWeight
-            : (java.lang.Float) defaultValue(fields()[1]);
-        record.vertexInId = fieldSetFlags()[2] ? this.vertexInId
-            : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.vertexOutId = fieldSetFlags()[3] ? this.vertexOutId
-            : (java.lang.CharSequence) defaultValue(fields()[3]);
-        record.label = fieldSetFlags()[4] ? this.label
-            : (java.lang.CharSequence) defaultValue(fields()[4]);
+        record.edgeId = fieldSetFlags()[0] ? this.edgeId :
+          (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.edgeWeight = fieldSetFlags()[1] ? this.edgeWeight :
+          (java.lang.Float) defaultValue(fields()[1]);
+        record.vertexInId = fieldSetFlags()[2] ? this.vertexInId :
+          (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.vertexOutId = fieldSetFlags()[3] ? this.vertexOutId :
+          (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.label = fieldSetFlags()[4] ? this.label :
+          (java.lang.CharSequence) defaultValue(fields()[4]);
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
+    // CHECKSTYLE: resume IllegalCatch
   }
 
+  /**
+   * Gets a tombstone
+   * @return GEdge.Tombstone
+   */
   public GEdge.Tombstone getTombstone() {
     return TOMBSTONE;
   }
 
+  /**
+   * Gets a new instance
+   * @return GEdge.
+   */
   public GEdge newInstance() {
     return newBuilder().build();
   }
 
-  private static final Tombstone TOMBSTONE = new Tombstone();
-
+  /**
+   * Tombstone class.
+   */
   public static final class Tombstone extends GEdge implements
       org.apache.gora.persistency.Tombstone {
 
+    /**
+     * Default constructor.
+     */
     private Tombstone() {
     }
 
     /**
      * Gets the value of the 'edgeId' field.
+     * @return java.lang.CharSequence
      */
     public java.lang.CharSequence getEdgeId() {
       throw new java.lang.UnsupportedOperationException(
@@ -590,6 +778,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
      * Checks the dirty status of the 'edgeId' field. A field is dirty if it
      * represents a change that has not yet been written to the database.
      * @param value the value to set.
+     * @return boolean
      */
     public boolean isEdgeIdDirty(java.lang.CharSequence value) {
       throw new java.lang.UnsupportedOperationException(
@@ -598,6 +787,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
     /**
      * Gets the value of the 'edgeWeight' field.
+     * @return Float
      */
     public java.lang.Float getEdgeWeight() {
       throw new java.lang.UnsupportedOperationException(
@@ -617,6 +807,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
      * Checks the dirty status of the 'edgeWeight' field. A field is dirty if it
      * represents a change that has not yet been written to the database.
      * @param value the value to set.
+     * @return boolean
      */
     public boolean isEdgeWeightDirty(java.lang.Float value) {
       throw new java.lang.UnsupportedOperationException(
@@ -625,6 +816,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
     /**
      * Gets the value of the 'vertexInId' field.
+     * @return CharSequence
      */
     public java.lang.CharSequence getVertexInId() {
       throw new java.lang.UnsupportedOperationException(
@@ -644,6 +836,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
      * Checks the dirty status of the 'vertexInId' field. A field is dirty if it
      * represents a change that has not yet been written to the database.
      * @param value the value to set.
+     * @return boolean
      */
     public boolean isVertexInIdDirty(java.lang.CharSequence value) {
       throw new java.lang.UnsupportedOperationException(
@@ -652,6 +845,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
     /**
      * Gets the value of the 'vertexOutId' field.
+     * @return CharSequence
      */
     public java.lang.CharSequence getVertexOutId() {
       throw new java.lang.UnsupportedOperationException(
@@ -671,6 +865,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
      * Checks the dirty status of the 'vertexOutId' field. A field is dirty if
      * it represents a change that has not yet been written to the database.
      * @param value the value to set.
+     * @return boolean
      */
     public boolean isVertexOutIdDirty(java.lang.CharSequence value) {
       throw new java.lang.UnsupportedOperationException(
@@ -679,6 +874,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
 
     /**
      * Gets the value of the 'label' field.
+     * @return CharSequence
      */
     public java.lang.CharSequence getLabel() {
       throw new java.lang.UnsupportedOperationException(
@@ -698,6 +894,7 @@ public class GEdge extends org.apache.gora.persistency.impl.PersistentBase
      * Checks the dirty status of the 'label' field. A field is dirty if it
      * represents a change that has not yet been written to the database.
      * @param value the value to set.
+     * @return boolean
      */
     public boolean isLabelDirty(java.lang.CharSequence value) {
       throw new java.lang.UnsupportedOperationException(
